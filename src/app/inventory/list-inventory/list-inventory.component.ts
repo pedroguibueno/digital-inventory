@@ -15,6 +15,7 @@ import { InventoryService } from '../shared/services/inventory.service';
 export class ListInventoryComponent implements OnInit {
 
   inventories: InventoryItem[];
+  loading: boolean = false;
 
   constructor(
     private messageService: MessageService,
@@ -33,15 +34,19 @@ export class ListInventoryComponent implements OnInit {
       header: 'Confirmação de deleção',
       icon: 'pi pi-info-circle',
       accept: () => {
-          this.deleteItem(itemId);
+        this.deleteItem(itemId);
       },
       reject: () => { }
     });
   }
 
   retrieveInventories() {
-    this.inventories = this.inventoryService.getInventory();
-    debugger;
+    this.loading = true;
+    this.inventoryService.getAsyncInventory()
+      .then(inventoryList => {
+        this.inventories = inventoryList;
+        this.loading = false
+      });
   }
 
   deleteItem(itemId: number) {
@@ -55,7 +60,7 @@ export class ListInventoryComponent implements OnInit {
   }
 
   editItem(itemId: number) {
-    this.router.navigate(['/new-inventory'], {state: {updatingId: itemId}});
+    this.router.navigate(['/new-inventory'], { state: { updatingId: itemId } });
   }
 
   formatDate(date: Date): string {
@@ -65,6 +70,4 @@ export class ListInventoryComponent implements OnInit {
   getQuantitySymbol(unit: MeasurementUnit): string {
     return measurementUnitOptions.find(item => item.name === unit)?.symbol || "";
   }
-
-
 }

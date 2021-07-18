@@ -1,4 +1,5 @@
 export default class MoneyUtils {
+
     static formatMoney(value: string):string {
         if(value === null) return value;
         value = value.replace(/\D/g, '');
@@ -17,4 +18,5 @@ export default class MoneyUtils {
         value = value.replace(/\B(?=(\d{3})+(?!\d))/g, "."); 
         return  "R$ " + value;
     }
+    
 }

@@ -14,9 +14,9 @@ export class InventoryService {
       localStorage.setItem('lastId', '0')
       return 0;
     }
-    const nextId = lastId + 1;
+    const nextId = parseInt(lastId, 10) + 1;
     localStorage.setItem('lastId', nextId.toString())
-    return parseInt(nextId, 10);
+    return nextId;
   }
 
   getInventory(): InventoryItem[] {
@@ -26,9 +26,15 @@ export class InventoryService {
     return [];
   }
 
+  async getAsyncInventory(): Promise<InventoryItem[]> {
+    return new Promise<InventoryItem[]>(resolve =>
+      setTimeout(resolve, 1000))
+      .then(() => this.getInventory());
+  }
+
   saveInventory(item: InventoryItem) {
     let inventories = this.getInventory();
-    if(item.id === null) {
+    if(item.id === null || item.id === undefined) {
       item.id = this.getNextId()
       inventories.push(item);
     } else {

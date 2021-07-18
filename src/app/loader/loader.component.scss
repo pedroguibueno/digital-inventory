@@ -1,0 +1,20 @@
+.loader-container {
+    background-color: rgb(1 43 35 / 93%);
+    width: 100vw;
+
+    .loader-content {
+        margin: 0 auto;
+        width: 30%;
+        padding: 80px 0;
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        .loader-spinner {
+            margin: 0 auto;
+            width: 50px;
+        }
+    }
+}

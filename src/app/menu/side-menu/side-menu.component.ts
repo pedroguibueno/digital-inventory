@@ -6,13 +6,10 @@ import { MENU_LIST } from '../shared/menu-list';
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.scss']
 })
-export class SideMenuComponent implements OnInit {
+export class SideMenuComponent {
 
   menuList = MENU_LIST;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

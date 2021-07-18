@@ -6,7 +6,7 @@
             <div class="header-image"></div>
         </ng-template>
 
-        <p-table [value]="inventories">
+        <p-table [value]="inventories" [paginator]="true" [rows]="6" styleClass="p-datatable-responsive-demo">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Nome</th>
@@ -56,3 +56,4 @@
 </div>
 <p-toast></p-toast>
 <p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+<loader [isLoading]="loading"></loader>

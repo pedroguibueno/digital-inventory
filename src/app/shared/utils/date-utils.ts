@@ -1,6 +1,5 @@
 export default class DateUtils {
-
-
+    
     static removeTime(date:Date): Date {
         const stripedDateString = date.toDateString();
         return new Date(stripedDateString);

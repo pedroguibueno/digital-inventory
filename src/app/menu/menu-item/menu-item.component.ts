@@ -6,13 +6,9 @@ import { MenuItem } from '../shared/menu-item.model';
   templateUrl: './menu-item.component.html',
   styleUrls: ['./menu-item.component.scss']
 })
-export class MenuItemComponent implements OnInit {
+export class MenuItemComponent {
 
   @Input() menuItem?: MenuItem;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

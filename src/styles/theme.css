@@ -2166,7 +2166,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 .p-datatable .p-datatable-thead > tr > th {
   text-align: center;
-  padding: 1rem 1rem;
+  padding: 1rem 0.4rem;
   border: 1px solid #00C196;
   border-width: 0 0 1px 0;
   font-weight: 600;
@@ -2229,9 +2229,9 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 .p-datatable .p-datatable-tbody > tr > td {
   text-align: center;
-  border: 1px solid #00C196;
+  border: 1px solid #007b6014;
   border-width: 0 0 1px 0;
-  padding: 1rem 1rem;
+  padding: 0.6rem 1rem;
 }
 .p-datatable .p-datatable-tbody > tr > td .p-row-toggler,
 .p-datatable .p-datatable-tbody > tr > td .p-row-editor-init,
@@ -2742,7 +2742,6 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 .p-paginator {
   background: #ffffff;
   color: #6c757d;
-  border: solid #00C196;
   border-width: 0;
   padding: 0.5rem 1rem;
   border-radius: 1px;
@@ -3648,6 +3647,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   background: #ffffff;
   color: #495057;
   padding: 0 1.5rem 2rem 1.5rem;
+  padding-top: 5px
 }
 .p-dialog .p-dialog-footer {
   border-top: 0 none;
@@ -5261,4 +5261,9 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 
 .p-galleria .p-galleria-indicators .p-galleria-indicator.p-highlight button {
   background-color: #00C89B;
+}
+
+.p-progress-spinner {
+  width: 50px !important;
+  height: 50px !important;
 }

@@ -4,9 +4,9 @@ import { IfPerishableValidator } from 'src/app/inventory/shared/directives/peris
 import DateUtils from 'src/app/shared/utils/date-utils';
 import MoneyUtils from 'src/app/shared/utils/money-utils';
 import { InventoryItem } from '../shared/models/inventory-item.model';
-import { MeasurementUnitDropdown, measurementUnitOptions } from '../shared/models/measurement-unit.model';
+import { measurementUnitOptions } from '../shared/models/measurement-unit.model';
 import { InventoryService } from '../shared/services/inventory.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
 import { LocationState } from 'src/app/shared/models/location-state.model';
 
@@ -79,7 +79,6 @@ export class NewInventoryComponent implements OnInit {
   }
 
   createForm(inventory: any) {
-
     const selectedMeasurementUnit = measurementUnitOptions.find(item => item.name === inventory.measurementUnit)
 
     this.inventoryForm = new FormGroup({

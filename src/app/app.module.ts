@@ -8,6 +8,7 @@ import { MenuItemComponent } from './menu/menu-item/menu-item.component';
 import { NewInventoryComponent } from './inventory/new-inventory/new-inventory.component';
 import { ListInventoryComponent } from './inventory/list-inventory/list-inventory.component';
 import { TransformInputDirective } from './shared/directives/transform-input.directive';
+import { LoaderComponent } from './loader/loader.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import {FormsModule} from '@angular/forms';
@@ -24,6 +25,8 @@ import {InputMaskModule} from 'primeng/inputmask';
 import {ToastModule} from 'primeng/toast';
 import {TableModule} from 'primeng/table';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {BlockUIModule} from 'primeng/blockui';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     MenuItemComponent,
     NewInventoryComponent,
     ListInventoryComponent,
-    TransformInputDirective
+    TransformInputDirective,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,9 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
     InputMaskModule,
     ToastModule,
     TableModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    BlockUIModule,
+    ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
