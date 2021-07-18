@@ -1,0 +1,50 @@
+@import 'styles/_variable.scss';
+
+
+html {
+    box-sizing: border-box;
+    //font-size: 78%;
+    font-size: 87%;
+    //font-size: 62.5%;    
+    color: var(--color-text);
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', Sans-Serif;
+    height: 100%;
+    width: 100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.6em; }
+h3 { font-size: 1.17em; }
+h4 { font-size: 1.12em; }
+h5 { font-size: .83em; }
+h6 { font-size: .75em; }
+
+.fullwidth {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+}
+
+.content-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    p-card {
+        width: 80%;
+        margin: 0 auto;
+    }
+}

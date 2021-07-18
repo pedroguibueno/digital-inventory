@@ -1,0 +1,15 @@
+.main-container {
+    height: 100vh;
+    margin: 0;
+    background: #f4f4f4;
+    flex-wrap: nowrap;
+
+    .no-padding {
+        padding: 0;
+    }
+
+    .side-menu {
+        min-width: 200px;
+        max-width: 280px;
+    }
+}

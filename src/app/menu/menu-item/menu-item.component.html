@@ -1,0 +1,4 @@
+<div *ngIf="menuItem" class="menu__item p-py-4 p-pl-5" routerLink={{menuItem.path}}>
+    <i class="pi p-mx-3" [ngClass]="menuItem.icon"></i>
+    <h4>{{menuItem.text}}</h4>
+</div>

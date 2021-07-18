@@ -1,0 +1,21 @@
+.menu__item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    h4 {
+        font-weight: 500;
+        color: rgba(255,255,255,.8);
+    }
+
+    i {
+        font-size: 1.6rem;
+        color: rgba(255,255,255,.5)
+    }
+
+    &:hover {
+        h4 {color: white;}
+        i {color: white;}
+        background: linear-gradient(90deg, #00958b4b 0%, #00958b27 10%, #00958b00 100%);
+    }
+}

@@ -1,0 +1,124 @@
+<div class="content-container">
+
+    <p-card header="Novo item de estoque" subheader="Inserir um novo item na listagem de estoque" class="p-shadow-2">
+        <ng-template pTemplate="header">
+            <div class="header-image"></div>
+        </ng-template>
+
+        <form role="form" [formGroup]="inventoryForm" (ngSubmit)="handleSave()">
+            <div class="p-grid p-mb-1">
+                <div class="p-field p-col-12">
+                    <label>Nome do item*</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-file"></i></span>
+                        <input type="text" class="fullwidth" pInputText placeholder="Nome do item"
+                            formControlName="name" required [transformInput]="filterTextInput">
+                    </div>
+                    <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert alert-danger">
+                        <small *ngIf="f.name.errors?.required" class="p-error">
+                            Nome é obrigatório.
+                        </small>
+                        <small *ngIf="f.name.errors?.maxlength" class="p-error">
+                            O nome pode ter um máximo de 50 caracteres.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid p-mb-1">
+                <div class="p-field p-col-6">
+                    <label>Unidade de medida*</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-chart-bar"></i></span>
+                        <p-dropdown [required]="true" [style]="{'width':'100%'}" placeholder="Unidade de medida"
+                            [options]="measurementUnits" class="fullwidth" optionLabel="translation"
+                            formControlName="measurementUnit"></p-dropdown>
+                    </div>
+                    <div *ngIf="f.measurementUnits?.invalid && (f.measurementUnits.dirty || f.measurementUnits.touched)"
+                        class="alert alert-danger">
+                        <small *ngIf="f.measurementUnits.errors?.required" class="p-error">
+                            Unidade de medida é obrigatória.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="p-field p-col-6">
+                    <label>Quantidade</label>
+                    <div class="p-inputgroup">
+                        <p-inputNumber [style]="{'width':'100%'}" mode="decimal"
+                            [disabled]="f.measurementUnit.value === null" [minFractionDigits]="isUnit ? 0 : 2"
+                            [maxFractionDigits]="f.measurementUnit.value?.name === 'UNIT' ? 0 : 3"
+                            formControlName="quantity" class="fullwidth" placeholder="Quantidade"></p-inputNumber>
+                        <span class="p-inputgroup-addon">{{f.measurementUnit?.value?.symbol}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid p-mb-1">
+                <div class="p-field p-col-6">
+                    <label>Preço*</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-dollar"></i></span>
+                        <input type="text" [transformInput]="formatMoney" class="fullwidth" pInputText
+                            [style]="{'width':'100%'}" formControlName="price" placeholder="R$">
+                    </div>
+                    <div *ngIf="f.price.invalid && (f.price.dirty || f.price.touched)" class="alert alert-danger">
+                        <small *ngIf="f.price.errors?.required" class="p-error">
+                            Preço é obrigatório.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="p-field p-col-6">
+                    <label></label>
+                    <div class="p-field-checkbox" style="margin-bottom: 0; transform: translateY(50%);">
+                        <p-checkbox formControlName="isPerishable" [binary]="true" inputId="binary"></p-checkbox>
+                        <label for="binary">Produto perecivel*</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-grid p-mb-1">
+                <div class="p-field p-col-6">
+                    <label>Data de validade</label><label *ngIf="f.isPerishable.value">*</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
+                        <p-calendar class="fullwidth" dateFormat="dd/mm/yy" [style]="{'width':'100%'}"
+                            formControlName="expirationDate"></p-calendar>
+                    </div>
+                    <small class="p-warning" *ngIf="isProductExpired()">
+                        Produto está vencido.
+                    </small>
+                    <div *ngIf="inventoryForm.errors?.requiredExpiration" class="alert alert-danger">
+                        <small class="p-error">
+                            Data de expiração é obrigatória.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="p-field p-col-6">
+                    <label>Data de fabricação*</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
+                        <p-calendar class="fullwidth" dateFormat="dd/mm/yy" [style]="{'width':'100%'}"
+                            formControlName="manufacturingDate"></p-calendar>
+                    </div>
+                    <div *ngIf="inventoryForm.errors?.manufactingDateAfterExpiration" class="alert alert-danger">
+                        <small class="p-error">
+                            A data de fabricação não pode ser superior a data de expiração caso o produto seja
+                            perecivel.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button pButton pRipple type="submit" label="Salvar" class="p-mr-2"
+                    [disabled]="inventoryForm.invalid"></button>
+                <button pButton pRipple type="button" label="Cancelar" class="p-button-danger"
+                    routerLink="/list-inventory" routerLinkActive="active"></button>
+            </div>
+        </form>
+    </p-card>
+</div>
+<p-toast></p-toast>

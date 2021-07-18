@@ -1,0 +1,45 @@
+.container {
+    height: 100%;
+    margin-top: 0;
+    background: var(--color-background);
+    color: white;
+
+    .logo {
+        text-align: center;
+    }
+
+    hr {
+        border-top: 1px solid rgba(255,255,255,.15);
+    }
+
+    .menu {
+
+        &__header {
+            color: #ffffffdb;
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            h3 {
+                font-weight: 500;
+                color: rgba(255,255,255,.8);
+            }
+
+            i {
+                font-size: 1.7rem;
+                color: rgba(255,255,255,.5)
+            }
+
+            &:hover {
+                h3 {color: white;}
+                i {color: white;}
+                background: linear-gradient(90deg, #00958b4b 0%, #00958b27 10%, #00958b00 100%);
+            }
+        }
+    }
+
+    
+}

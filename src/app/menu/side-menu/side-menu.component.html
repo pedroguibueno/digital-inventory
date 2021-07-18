@@ -1,0 +1,14 @@
+<div class="p-shadow-2 container">
+    <div class="p-py-6 logo">
+        <h1>Estoque Digital</h1>
+    </div>
+    <hr class="solid p-mx-4">
+    <div class="menu p-py-5">
+        <h5 class="menu__header p-m-3 p-pl-3">
+            MENU
+        </h5>
+        <div *ngFor="let menuItem of menuList">
+            <menu-item [menuItem]="menuItem" ></menu-item>
+        </div>
+    </div>
+</div>
