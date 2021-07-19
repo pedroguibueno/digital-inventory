@@ -88,23 +88,6 @@
 
             <div class="p-grid p-mb-1">
                 <div class="p-field p-col-6">
-                    <label>Data de validade</label><label *ngIf="f.isPerishable.value">*</label>
-                    <div class="p-inputgroup">
-                        <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
-                        <p-calendar class="fullwidth" dateFormat="dd/mm/yy" [style]="{'width':'100%'}"
-                            formControlName="expirationDate"></p-calendar>
-                    </div>
-                    <small class="p-warning" *ngIf="isProductExpired()">
-                        Produto está vencido.
-                    </small>
-                    <div *ngIf="inventoryForm.errors?.requiredExpiration" class="alert alert-danger">
-                        <small class="p-error">
-                            Data de expiração é obrigatória.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="p-field p-col-6">
                     <label>Data de fabricação*</label>
                     <div class="p-inputgroup">
                         <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
@@ -121,6 +104,23 @@
                         class="alert alert-danger">
                         <small *ngIf="f.manufacturingDate.errors?.required" class="p-error">
                             A data de fabricação é obrigatória.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="p-field p-col-6">
+                    <label>Data de validade</label><label *ngIf="f.isPerishable.value">*</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
+                        <p-calendar class="fullwidth" dateFormat="dd/mm/yy" [style]="{'width':'100%'}"
+                            formControlName="expirationDate"></p-calendar>
+                    </div>
+                    <small class="p-warning" *ngIf="isProductExpired()">
+                        Produto está vencido.
+                    </small>
+                    <div *ngIf="inventoryForm.errors?.requiredExpiration" class="alert alert-danger">
+                        <small class="p-error">
+                            Data de expiração é obrigatória.
                         </small>
                     </div>
                 </div>
