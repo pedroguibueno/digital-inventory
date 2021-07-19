@@ -1,15 +1,15 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { IfPerishableValidator } from 'src/app/shared/directives/perishable-validator.directive';
+import { QuantityValidator } from 'src/app/shared/directives/quantity-validator.directive';
+import { LocationState } from 'src/app/shared/models/location-state.model';
+import { measurementUnitOptions } from 'src/app/shared/models/measurement-unit.model';
 import DateUtils from 'src/app/shared/utils/date-utils';
 import MoneyUtils from 'src/app/shared/utils/money-utils';
 import { InventoryItem } from '../../shared/models/inventory-item.model';
 import { InventoryService } from '../../shared/services/inventory.service';
-import { MessageService } from 'primeng/api';
-import { Location } from '@angular/common';
-import { LocationState } from 'src/app/shared/models/location-state.model';
-import { MeasurementUnit, measurementUnitOptions } from 'src/app/shared/models/measurement-unit.model';
-import { QuantityValidator } from 'src/app/shared/directives/quantity-validator.directive';
 
 @Component({
   selector: 'new-inventory',
@@ -62,7 +62,6 @@ export class NewInventoryComponent implements OnInit {
   handleSave() {
     this.loading = true;
     const formValues = this.inventoryForm.value;
-    debugger;
     const inventoryItem: InventoryItem = {
       id: this.updatingId,
       name: formValues.name,

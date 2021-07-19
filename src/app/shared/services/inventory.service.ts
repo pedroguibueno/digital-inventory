@@ -21,7 +21,6 @@ export class InventoryService {
 
   getInventory(): InventoryItem[] {
     const storageData = localStorage.getItem('inventory');
-    let inventories;
     if(storageData !== null) return JSON.parse(storageData);
     return [];
   }

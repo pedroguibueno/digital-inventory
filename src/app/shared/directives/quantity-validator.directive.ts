@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
+import { AbstractControl, ValidatorFn } from "@angular/forms";
 import { MeasurementUnit } from "../models/measurement-unit.model";
-import DateUtils from "../utils/date-utils";
 
 @Injectable({providedIn: 'root'})
 export class QuantityValidator {

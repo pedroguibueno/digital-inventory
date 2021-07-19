@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,10 +12,7 @@ import { NewInventoryComponent } from './modules/new-inventory/new-inventory.com
 import { ListInventoryComponent } from './modules/list-inventory/list-inventory.component';
 import { TransformInputDirective } from './shared/directives/transform-input.directive';
 import { LoaderComponent } from './shared/components/loader/loader.component';
-
-import { ReactiveFormsModule } from '@angular/forms';
-import {FormsModule} from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderImageComponent } from './shared/components/header-image/header-image.component';
 
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
@@ -27,7 +27,6 @@ import {TableModule} from 'primeng/table';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {BlockUIModule} from 'primeng/blockui';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import { HeaderImageComponent } from './shared/components/header-image/header-image.component';
 
 @NgModule({
   declarations: [

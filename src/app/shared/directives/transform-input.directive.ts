@@ -1,12 +1,12 @@
 import {
-    Directive,
-    ElementRef,
-    Input,
-    OnDestroy,
-    OnInit
-  } from '@angular/core';
-  import { NgControl } from '@angular/forms';
-  import { Subscription } from 'rxjs';
+  Directive,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
+import { NgControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
   
   @Directive({
     selector: '[transformInput][formControlName]'
