@@ -1,3 +1,7 @@
+/* 
+  Created based on default primeNG theme
+*/
+
 @charset "UTF-8";
 :root {
   --surface-a:#ffffff;
@@ -2140,6 +2144,10 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   color: #495057;
 }
 
+.p-datatable table {
+  table-layout: auto !important;
+}
+
 .p-datatable .p-paginator-top {
   border-width: 0 0 1px 0;
   border-radius: 0;
@@ -2227,6 +2235,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   transition: box-shadow 0.2s;
   outline-color: #86e7d2;
 }
+
 .p-datatable .p-datatable-tbody > tr > td {
   text-align: center;
   border: 1px solid #007b6014;
@@ -5266,4 +5275,8 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 .p-progress-spinner {
   width: 50px !important;
   height: 50px !important;
+}
+
+.p-datatable-wrapper {
+  height: 360px;
 }

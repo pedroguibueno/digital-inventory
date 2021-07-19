@@ -19,6 +19,7 @@ export default class DateUtils {
     }
 
     static displayDateString(date: Date): string {
+        if(date === null) return "";
         return new Date(date).toLocaleDateString();
     }
 }

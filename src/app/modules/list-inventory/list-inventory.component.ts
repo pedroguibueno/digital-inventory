@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { MeasurementUnit, measurementUnitOptions } from 'src/app/shared/models/measurement-unit.model';
 import DateUtils from 'src/app/shared/utils/date-utils';
-import { InventoryItem } from '../shared/models/inventory-item.model';
-import { MeasurementUnit, measurementUnitOptions } from '../shared/models/measurement-unit.model';
-import { InventoryService } from '../shared/services/inventory.service';
+import { InventoryItem } from '../../shared/models/inventory-item.model';
+import { InventoryService } from '../../shared/services/inventory.service';
 
 @Component({
   selector: 'list-inventory',
   templateUrl: './list-inventory.component.html',
-  styleUrls: ['./list-inventory.component.scss'],
   providers: [MessageService, ConfirmationService]
 })
 export class ListInventoryComponent implements OnInit {
@@ -31,7 +30,7 @@ export class ListInventoryComponent implements OnInit {
   confirmDelete(itemId: number) {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja deletar este registros?',
-      header: 'Confirmação de deleção',
+      header: 'Deletar registro',
       icon: 'pi pi-info-circle',
       accept: () => {
         this.deleteItem(itemId);

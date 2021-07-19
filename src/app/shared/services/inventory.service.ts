@@ -28,8 +28,17 @@ export class InventoryService {
 
   async getAsyncInventory(): Promise<InventoryItem[]> {
     return new Promise<InventoryItem[]>(resolve =>
-      setTimeout(resolve, 1000))
+      setTimeout(resolve, 800))
       .then(() => this.getInventory());
+  }
+
+  async saveAsyncInventory(item: InventoryItem): Promise<boolean> {
+    return new Promise<boolean>(resolve =>
+      setTimeout(resolve, 800))
+      .then(() => {
+        this.saveInventory(item);
+        return true;
+      });
   }
 
   saveInventory(item: InventoryItem) {
@@ -54,7 +63,7 @@ export class InventoryService {
     let inventory = this.getInventory().find(item => item.id === itemId);
     if(inventory == undefined) return inventory;
 
-    inventory.expirationDate = new Date(inventory.expirationDate);
+    inventory.expirationDate = (inventory.expirationDate !== null) ? new Date(inventory.expirationDate) : null;
     inventory.manufacturingDate = new Date(inventory.manufacturingDate);
     return inventory;
   }

@@ -2,7 +2,7 @@
 
     <p-card header="Novo item de estoque" subheader="Inserir um novo item na listagem de estoque" class="p-shadow-2">
         <ng-template pTemplate="header">
-            <div class="header-image"></div>
+            <header-image [imagePath]="'../../../assets/img/background-item.jpg'"></header-image>
         </ng-template>
 
         <form role="form" [formGroup]="inventoryForm" (ngSubmit)="handleSave()">
@@ -31,7 +31,7 @@
                     <div class="p-inputgroup">
                         <span class="p-inputgroup-addon"><i class="pi pi-chart-bar"></i></span>
                         <p-dropdown [required]="true" [style]="{'width':'100%'}" placeholder="Unidade de medida"
-                            [options]="measurementUnits" class="fullwidth" optionLabel="translation"
+                            [options]="measurementUnits"  class="fullwidth" optionLabel="translation"
                             formControlName="measurementUnit"></p-dropdown>
                     </div>
                     <div *ngIf="f.measurementUnits?.invalid && (f.measurementUnits.dirty || f.measurementUnits.touched)"
@@ -45,11 +45,19 @@
                 <div class="p-field p-col-6">
                     <label>Quantidade</label>
                     <div class="p-inputgroup">
-                        <p-inputNumber [style]="{'width':'100%'}" mode="decimal"
-                            [disabled]="f.measurementUnit.value === null" [minFractionDigits]="isUnit ? 0 : 2"
-                            [maxFractionDigits]="f.measurementUnit.value?.name === 'UNIT' ? 0 : 3"
-                            formControlName="quantity" class="fullwidth" placeholder="Quantidade"></p-inputNumber>
+                        <input type="number" class="fullwidth" pInputText placeholder="Quantidade"
+                        formControlName="quantity">
                         <span class="p-inputgroup-addon">{{f.measurementUnit?.value?.symbol}}</span>
+                    </div>
+                    <div *ngIf="inventoryForm.errors?.invalidQuantityUnit" class="alert alert-danger">
+                        <small class="p-error">
+                            Quantidade em unidade não pode conter casas decimais.
+                        </small>
+                    </div>
+                    <div *ngIf="inventoryForm.errors?.invalidQuantityDecimal" class="alert alert-danger">
+                        <small class="p-error">
+                            Quantidade em litros / quilogramas não pode conter mais que 3 casas decimais.
+                        </small>
                     </div>
                 </div>
             </div>
@@ -109,11 +117,17 @@
                             perecivel.
                         </small>
                     </div>
+                    <div *ngIf="f.manufacturingDate.invalid && (f.manufacturingDate.dirty || f.manufacturingDate.touched)"
+                        class="alert alert-danger">
+                        <small *ngIf="f.manufacturingDate.errors?.required" class="p-error">
+                            A data de fabricação é obrigatória.
+                        </small>
+                    </div>
                 </div>
             </div>
 
             <div>
-                <button pButton pRipple type="submit" label="Salvar" class="p-mr-2"
+                <button pButton pRipple type="submit" label="Salvar" class="p-mr-3"
                     [disabled]="inventoryForm.invalid"></button>
                 <button pButton pRipple type="button" label="Cancelar" class="p-button-danger"
                     routerLink="/list-inventory" routerLinkActive="active"></button>
@@ -122,3 +136,4 @@
     </p-card>
 </div>
 <p-toast></p-toast>
+<loader [isLoading]="loading"></loader>

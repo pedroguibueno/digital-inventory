@@ -1,25 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IfPerishableValidator } from 'src/app/inventory/shared/directives/perishable-validator.directive';
+import { IfPerishableValidator } from 'src/app/shared/directives/perishable-validator.directive';
 import DateUtils from 'src/app/shared/utils/date-utils';
 import MoneyUtils from 'src/app/shared/utils/money-utils';
-import { InventoryItem } from '../shared/models/inventory-item.model';
-import { measurementUnitOptions } from '../shared/models/measurement-unit.model';
-import { InventoryService } from '../shared/services/inventory.service';
+import { InventoryItem } from '../../shared/models/inventory-item.model';
+import { InventoryService } from '../../shared/services/inventory.service';
 import { MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
 import { LocationState } from 'src/app/shared/models/location-state.model';
+import { MeasurementUnit, measurementUnitOptions } from 'src/app/shared/models/measurement-unit.model';
+import { QuantityValidator } from 'src/app/shared/directives/quantity-validator.directive';
 
 @Component({
   selector: 'new-inventory',
   templateUrl: './new-inventory.component.html',
-  styleUrls: ['./new-inventory.component.scss'],
   providers: [MessageService]
 })
 export class NewInventoryComponent implements OnInit {
 
+  loading: boolean = false;
   inventoryForm: FormGroup;
   updatingId: number|null;
+  
   defaultFormValues = {
     name: "",
     measurementUnit: null,
@@ -32,6 +34,7 @@ export class NewInventoryComponent implements OnInit {
 
   constructor(
     private ifPerishableValidator: IfPerishableValidator,
+    private quantityValidator: QuantityValidator,
     private inventoryService: InventoryService,
     private messageService: MessageService,
     private location: Location
@@ -57,7 +60,9 @@ export class NewInventoryComponent implements OnInit {
   }
 
   handleSave() {
+    this.loading = true;
     const formValues = this.inventoryForm.value;
+    debugger;
     const inventoryItem: InventoryItem = {
       id: this.updatingId,
       name: formValues.name,
@@ -68,14 +73,16 @@ export class NewInventoryComponent implements OnInit {
       expirationDate: formValues.expirationDate,
       manufacturingDate: formValues.manufacturingDate
     }
-    this.inventoryService.saveInventory(inventoryItem);
-    this.inventoryForm.reset(this.defaultFormValues);
-    this.updatingId = null;
-    this.messageService.add({
-      severity: "success",
-      summary: "Successo",
-      detail: "Inventário cadastrado com sucesso"
-    })
+    this.inventoryService.saveAsyncInventory(inventoryItem).then(result => {
+      this.inventoryForm.reset(this.defaultFormValues);
+      this.updatingId = null;
+      this.messageService.add({
+        severity: "success",
+        summary: "Successo",
+        detail: "Inventário cadastrado com sucesso"
+      })
+      this.loading = false;
+    });
   }
 
   createForm(inventory: any) {
@@ -95,12 +102,15 @@ export class NewInventoryComponent implements OnInit {
       ]),
       isPerishable: new FormControl(inventory.isPerishable),
       expirationDate: new FormControl(inventory.expirationDate),
-      manufacturingDate: new FormControl(inventory.manufacturingDate)
+      manufacturingDate: new FormControl(inventory.manufacturingDate, [
+        Validators.required
+      ])
     }, 
     {
       validators: [
         this.ifPerishableValidator.requiredIfPerishable(),
-        this.ifPerishableValidator.invalidDateAfterExpirationIfPerishable()
+        this.ifPerishableValidator.invalidDateAfterExpirationIfPerishable(),
+        this.quantityValidator.quantityByMeasurementUnit()
       ],
       updateOn: "change"
     })  
@@ -116,7 +126,7 @@ export class NewInventoryComponent implements OnInit {
     return input.replace(/[0-9]/g, '');
   }
 
-  formatMoney(value: string):string {
+  formatMoney(value: string): string {
     return MoneyUtils.formatMoney(value);
   }
 

@@ -20,7 +20,9 @@ export class AppComponent implements OnInit{
             'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
           monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
           today: 'Hoje',
-          clear: 'Limpar'
+          clear: 'Limpar',
+          accept: 'Sim',
+          reject: 'Cancelar'
       });
   }
 }

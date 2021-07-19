@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MENU_LIST } from '../shared/menu-list';
+import { MENU_LIST } from '../../shared/lists/menu-list';
 
 @Component({
   selector: 'side-menu',

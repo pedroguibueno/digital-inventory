@@ -1,6 +1,5 @@
 @import 'styles/_variable.scss';
 
-
 html {
     box-sizing: border-box;
     //font-size: 78%;
@@ -38,8 +37,13 @@ h6 { font-size: .75em; }
     display: flex;
 }
 
+.dont-break {
+    white-space: nowrap;
+}
+
 .content-container {
     height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
 

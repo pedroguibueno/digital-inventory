@@ -4,9 +4,9 @@ export interface InventoryItem {
     id?: number|null;
     name: string;
     measurementUnit: MeasurementUnit;
-    quantity: number;
+    quantity: number|null;
     price: number;
     isPerishable: boolean;
-    expirationDate: Date;
+    expirationDate: Date|null;
     manufacturingDate: Date;
 }

@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SideMenuComponent } from './menu/side-menu/side-menu.component';
-import { MenuItemComponent } from './menu/menu-item/menu-item.component';
-import { NewInventoryComponent } from './inventory/new-inventory/new-inventory.component';
-import { ListInventoryComponent } from './inventory/list-inventory/list-inventory.component';
+import { SideMenuComponent } from './modules/side-menu/side-menu.component';
+import { MenuItemComponent } from './shared/components/menu-item/menu-item.component';
+import { NewInventoryComponent } from './modules/new-inventory/new-inventory.component';
+import { ListInventoryComponent } from './modules/list-inventory/list-inventory.component';
 import { TransformInputDirective } from './shared/directives/transform-input.directive';
-import { LoaderComponent } from './loader/loader.component';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import {FormsModule} from '@angular/forms';
@@ -27,6 +27,7 @@ import {TableModule} from 'primeng/table';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {BlockUIModule} from 'primeng/blockui';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { HeaderImageComponent } from './shared/components/header-image/header-image.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     NewInventoryComponent,
     ListInventoryComponent,
     TransformInputDirective,
-    LoaderComponent
+    LoaderComponent,
+    HeaderImageComponent
   ],
   imports: [
     BrowserModule,
