@@ -14,7 +14,7 @@ import { InventoryService } from '../../shared/services/inventory.service';
 export class ListInventoryComponent implements OnInit {
 
   inventories: InventoryItem[];
-  loading: boolean = false;
+  loading = false;
 
   constructor(
     private messageService: MessageService,
@@ -27,19 +27,18 @@ export class ListInventoryComponent implements OnInit {
     this.retrieveInventories();
   }
 
-  confirmDelete(itemId: number) {
+  confirmDelete(itemId: number): void {
     this.confirmationService.confirm({
       message: 'Tem certeza que deseja deletar este registros?',
       header: 'Deletar registro',
       icon: 'pi pi-info-circle',
       accept: () => {
         this.deleteItem(itemId);
-      },
-      reject: () => { }
+      }
     });
   }
 
-  retrieveInventories() {
+  retrieveInventories(): void {
     this.loading = true;
     this.inventoryService.getAsyncInventory()
       .then(inventoryList => {
@@ -48,7 +47,7 @@ export class ListInventoryComponent implements OnInit {
       });
   }
 
-  deleteItem(itemId: number) {
+  deleteItem(itemId: number): void {
     this.inventoryService.deleteInventory(itemId);
     this.messageService.add({
       severity: "success",
@@ -58,7 +57,7 @@ export class ListInventoryComponent implements OnInit {
     this.retrieveInventories();
   }
 
-  editItem(itemId: number) {
+  editItem(itemId: number): void {
     this.router.navigate(['/new-inventory'], { state: { updatingId: itemId } });
   }
 

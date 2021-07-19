@@ -10,6 +10,4 @@ export class SideMenuComponent {
 
   menuList = MENU_LIST;
 
-  constructor() { }
-
 }

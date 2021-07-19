@@ -1,11 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { IfPerishableValidator } from 'src/app/shared/directives/perishable-validator.directive';
 import { QuantityValidator } from 'src/app/shared/directives/quantity-validator.directive';
 import { LocationState } from 'src/app/shared/models/location-state.model';
-import { measurementUnitOptions } from 'src/app/shared/models/measurement-unit.model';
+import { MeasurementUnitDropdown, measurementUnitOptions } from 'src/app/shared/models/measurement-unit.model';
 import DateUtils from 'src/app/shared/utils/date-utils';
 import MoneyUtils from 'src/app/shared/utils/money-utils';
 import { InventoryItem } from '../../shared/models/inventory-item.model';
@@ -18,7 +18,7 @@ import { InventoryService } from '../../shared/services/inventory.service';
 })
 export class NewInventoryComponent implements OnInit {
 
-  loading: boolean = false;
+  loading = false;
   inventoryForm: FormGroup;
   updatingId: number|null;
   
@@ -46,7 +46,7 @@ export class NewInventoryComponent implements OnInit {
     this.createForm(updatingItem === null ? this.defaultFormValues : updatingItem);
   }
 
-  getUpdatingInventory() {
+  getUpdatingInventory(): InventoryItem|null {
     const locationState = this.location.getState() as LocationState;
     const updatingId = locationState.updatingId;
     if(updatingId !== null) {
@@ -59,7 +59,7 @@ export class NewInventoryComponent implements OnInit {
     return null;
   }
 
-  handleSave() {
+  handleSave(): void {
     this.loading = true;
     const formValues = this.inventoryForm.value;
     const inventoryItem: InventoryItem = {
@@ -72,7 +72,7 @@ export class NewInventoryComponent implements OnInit {
       expirationDate: formValues.expirationDate,
       manufacturingDate: formValues.manufacturingDate
     }
-    this.inventoryService.saveAsyncInventory(inventoryItem).then(result => {
+    this.inventoryService.saveAsyncInventory(inventoryItem).then(() => {
       this.inventoryForm.reset(this.defaultFormValues);
       this.updatingId = null;
       this.messageService.add({
@@ -84,7 +84,7 @@ export class NewInventoryComponent implements OnInit {
     });
   }
 
-  createForm(inventory: any) {
+  createForm(inventory: any): void {
     const selectedMeasurementUnit = measurementUnitOptions.find(item => item.name === inventory.measurementUnit)
 
     this.inventoryForm = new FormGroup({
@@ -116,7 +116,7 @@ export class NewInventoryComponent implements OnInit {
   }
 
   isProductExpired(): boolean {
-      var expirationDate = this.inventoryForm.controls.expirationDate.value;
+      const expirationDate = this.inventoryForm.controls.expirationDate.value;
       if(expirationDate === null) return false;
       return DateUtils.isBeforeToday(expirationDate);
   }
@@ -129,8 +129,8 @@ export class NewInventoryComponent implements OnInit {
     return MoneyUtils.formatMoney(value);
   }
 
-  get f() {return this.inventoryForm.controls}
-  get measurementUnits() {return measurementUnitOptions}
-  get isUnit() {return this.inventoryForm.controls.measurementUnit.value?.name === "UNIT"}
+  get f(): { [key: string]: AbstractControl; } {return this.inventoryForm.controls}
+  get measurementUnits(): MeasurementUnitDropdown[] {return measurementUnitOptions}
+  get isUnit(): boolean {return this.inventoryForm.controls.measurementUnit.value?.name === "UNIT"}
 
 }

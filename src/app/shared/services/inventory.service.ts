@@ -6,8 +6,6 @@ import { InventoryItem } from '../models/inventory-item.model';
 })
 export class InventoryService {
 
-  constructor() { }
-
   getNextId(): number {
     const lastId = localStorage.getItem('lastId');
     if(lastId === null) {
@@ -40,8 +38,8 @@ export class InventoryService {
       });
   }
 
-  saveInventory(item: InventoryItem) {
-    let inventories = this.getInventory();
+  saveInventory(item: InventoryItem): void {
+    const inventories = this.getInventory();
     if(item.id === null || item.id === undefined) {
       item.id = this.getNextId()
       inventories.push(item);
@@ -52,14 +50,14 @@ export class InventoryService {
     localStorage.setItem('inventory', JSON.stringify(inventories));
   }
 
-  deleteInventory(itemId: number) {
+  deleteInventory(itemId: number): void {
     let inventories = this.getInventory();
     inventories = inventories.filter(item => item.id !== itemId);
     localStorage.setItem('inventory', JSON.stringify(inventories));
   }
 
   getInventoryById(itemId: number): InventoryItem | undefined {
-    let inventory = this.getInventory().find(item => item.id === itemId);
+    const inventory = this.getInventory().find(item => item.id === itemId);
     if(inventory == undefined) return inventory;
 
     inventory.expirationDate = (inventory.expirationDate !== null) ? new Date(inventory.expirationDate) : null;

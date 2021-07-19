@@ -11,7 +11,7 @@ export class AppComponent implements OnInit{
 
   constructor(private config: PrimeNGConfig) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
       this.config.setTranslation({
           dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
           dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],

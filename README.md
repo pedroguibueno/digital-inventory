@@ -2,7 +2,9 @@
 
 ## Rodar aplicação
 
-Rodar o comando `ng serve`. Navegar para a url `http://localhost:4200/`.
+Rodar o comando `npm install` para instalar as dependências.
+
+Rodar o comando `ng serve` e navegar para a url `http://localhost:4200/`.
 
 ## Tecnologias
 

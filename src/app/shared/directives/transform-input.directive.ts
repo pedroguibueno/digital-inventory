@@ -20,7 +20,7 @@ import { Subscription } from 'rxjs';
   
     constructor(public ngControl: NgControl, private elementRef: ElementRef) {}
   
-    ngOnInit() {
+    ngOnInit(): void {
       if (!this.sub && this.ngControl.valueChanges) this.sub = this.ngControl.valueChanges.subscribe(value => {
           const newValue = this.transform(value);
           if (value !== newValue) {
@@ -29,7 +29,7 @@ import { Subscription } from 'rxjs';
         })
     }
   
-    ngOnDestroy() {
+    ngOnDestroy(): void {
       this.sub?.unsubscribe();
     }
   }

@@ -10,5 +10,4 @@ export class MenuItemComponent {
 
   @Input() menuItem?: MenuItem;
 
-  constructor() { }
 }
