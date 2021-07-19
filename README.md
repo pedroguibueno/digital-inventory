@@ -2,11 +2,11 @@
 
 ## Rodar aplicação
 
-Rodar o comando `ng serve`. Navegar a url `http://localhost:4200/`.
+Rodar o comando `ng serve`. Navegar para a url `http://localhost:4200/`.
 
 ## Tecnologias
 
-Para este projeto foi utilizado Angular 2+ com a biblioteca PrimeNG
+Para este projeto foi utilizado Angular 2+ com a biblioteca PrimeNG, Typescript e SCSS
 
 ## Identidade visual
 
