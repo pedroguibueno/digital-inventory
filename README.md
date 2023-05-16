@@ -12,7 +12,7 @@ Para este projeto foi utilizado Angular 2+ com a biblioteca PrimeNG, Typescript 
 
 ## Identidade visual
 
-Nesse projeto usei como base a identidade visual e cores do site da Senior Sistemas
+Nesse projeto usei como base a identidade visual e cores da empresa ao qual esse teste foi criado
 
 ## Planos de melhoria
 
