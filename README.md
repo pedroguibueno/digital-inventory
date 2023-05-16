@@ -1,5 +1,7 @@
 # Estoque Digital
 
+Esse Projeto foi feito a vários anos e não reflete meu conhecimento atual de Angular 2+
+
 ## Rodar aplicação
 
 Rodar o comando `npm install` para instalar as dependências.
